@@ -22,6 +22,16 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+A credentials.json file should be made in the root directory which should contain the mongodb app connect URI in the following format
+
+```json
+{
+  "db": {
+    "uri": <mongodb URI>,
+    "password": <dbuser password><optional>
+  }
+}
+```
 
 In terminal locate to the app folder and then run the following command
 
