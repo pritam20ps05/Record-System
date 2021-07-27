@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- version 2.8-22.07.2021 -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="this web app helps simplify the process of managing and reading records"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('.static', filename='base/css/main.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="(max-width: 784px)"
+      href="{{url_for('.static', filename='base/css/mobile.css')}}"
+    />
+    <title>{{ params["title"] }}</title>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="std-nav">
+        <div class="nav-logo">
+          <h2 class="nava">LOGO</h2>
+        </div>
+        <div class="nav-list">
+          <ul>
+            <li><a href="#" class="links nava1">Home</a></li>
+            <li><a href="/dashboard" class="links nava2">Dashboard</a></li>
+            <li><a href="#" class="links nava3">About Us</a></li>
+          </ul>
+          <svg
+            fill="#000000"
+            id="hamburger"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="m-nav">
+        <div class="nav-list-m">
+          <ul>
+            <li><a href="#" class="links">Home</a></li>
+            <li><a href="/dashboard" class="links">Dashboard</a></li>
+            <li><a href="#" class="links">About Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buff"></div>
+    <!-- the dynamic content will come here -->
+    {% block content %}{% endblock %}
+  </body>
+</html>

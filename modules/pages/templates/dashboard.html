@@ -1,0 +1,222 @@
+<!-- extending base html -->
+{% extends "base.html" %} {% block content %}
+<section class="components">
+  <section class="container">
+    <form action="" method="POST" class="user-inp" id="inp-form">
+      <div class="form-header">
+        <div id="form-title">
+          <h2>{{ params["heading"] }}</h2>
+          <div class="form-accessory">
+            <button
+              class="accessory-btn"
+              id="add-btn"
+              aria-label="make a new entry"
+              title="make a new entry"
+            >
+              <svg
+                id="add-svg"
+                class="accessory-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                enable-background="new 0 0 24 24"
+                viewBox="0 0 24 24"
+                fill="#000000"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="section_1" class="form-component">
+        <div class="text-wraper text">
+          <label for="nsearch" id="nsrc-label">Name:</label>
+          <input
+            type="text"
+            name="nsearch"
+            id="name-search"
+            placeholder="Enter a name"
+          />
+        </div>
+        <div class="text-wraper select">
+          <label for="class-select" id="csrc-label">Class:</label>
+          <!-- using for loop for dislaying classes -->
+          <select name="class-select" id="class-list">
+            <option value="" id="class-opt1">All</option>
+            {% for i in range(12) %}
+            <option value="{{ i+1 }}" id="class-opt2">
+              {{"Class "+(i+1)|string}}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="text-wraper select">
+          <label for="section-list" id="ssrc-label">Section:</label>
+          <select name="section-select" id="section-list">
+            <option value="" id="section-opt1">All</option>
+            <option value="A" id="section-opt2">Section A</option>
+            <option value="B" id="section-opt3">Section B</option>
+            <option value="C" id="section-opt4">Section C</option>
+            <option value="D" id="section-opt5">Section D</option>
+            <option value="SCI" id="section-opt2">Science</option>
+            <option value="COM" id="section-opt3">Commerce</option>
+            <option value="HUM" id="section-opt4">Humanities</option>
+          </select>
+        </div>
+      </div>
+      <div id="section_2" class="form-component">
+        <div class="text-wraper text">
+          <label for="rsearch" id="rsrc-label">Registration ID:</label>
+          <input
+            type="text"
+            name="rsearch"
+            id="reg-search"
+            placeholder="Enter Registration ID"
+          />
+        </div>
+        <div id="mnth-wraper" class="text-wraper select">
+          <label for="dsearch" id="dsrc">Month:</label>
+          <select name="month-select" class="" id="mnth-list">
+            <option value="" id="mnth-opt1">All</option>
+            <option value="Jan" id="mnth-opt2">Jan</option>
+            <option value="Feb" id="mnth-opt3">Feb</option>
+            <option value="Mar" id="mnth-opt4">Mar</option>
+            <option value="Apr" id="mnth-opt5">Apr</option>
+            <option value="May" id="mnth-opt6">May</option>
+            <option value="Jun" id="mnth-opt7">Jun</option>
+            <option value="Jul" id="mnth-opt8">Jul</option>
+            <option value="Aug" id="mnth-opt9">Aug</option>
+            <option value="Sep" id="mnth-opt10">Sep</option>
+            <option value="Oct" id="mnth-opt11">Oct</option>
+            <option value="Nov" id="mnth-opt12">Nov</option>
+            <option value="Dec" id="mnth-opt13">Dec</option>
+          </select>
+          <div class="date-wraper">
+            <input type="date" name="dsearch" id="date-inp" class="hidden"
+            min="{{ params["year"] }}-01-01" max="{{ params["year"] }}-12-31" />
+            <div class="advance">
+              <input
+                type="checkbox"
+                aria-label="enable search by date"
+                value=""
+                name="advanced"
+                id="adv"
+              />
+              <label for="adv" id="adsrc">Advanced</label>
+            </div>
+          </div>
+        </div>
+        <div class="text-wraper select">
+          <label for="pay-select" id="psrc-label">Pay Status:</label>
+          <select name="pay-select" id="pay-list">
+            <option value="" id="pay-opt1">All</option>
+            <option value="1" id="pay-opt2">Paid</option>
+            <option value="0" id="pay-opt3">Not Paid</option>
+          </select>
+        </div>
+      </div>
+      <div id="form-action">
+        <button
+          class="btn"
+          aria-label="submit your input"
+          type="submit"
+          value="submit"
+        >
+          Search
+        </button>
+        <button class="btn hidden" type="submit" value="update">Update</button>
+      </div>
+    </form>
+  </section>
+  <section class="container">
+    <div class="table-components">
+      <div class="table-header">
+        <div class="header-component" id="usr-slno">
+          <h4>Sl. No.</h4>
+        </div>
+        <div class="header-component" id="usr-name">
+          <h4>Name</h4>
+        </div>
+        <div class="header-component" id="usr-class">
+          <h4>Class</h4>
+        </div>
+        <div class="header-component" id="usr-section">
+          <h4>Section</h4>
+        </div>
+        <div class="header-component" id="usr-reg">
+          <h4>Reg ID</h4>
+        </div>
+        <div class="header-component" id="usr-payStats">
+          <h4>Paid</h4>
+        </div>
+        <div class="header-component" id="usr-payDate">
+          <h4>Date</h4>
+        </div>
+      </div>
+      <div class="table-data" id="data-table">
+        <div class="msg">
+          <div class="inner-data msgd">
+            <h5>Nothing to show</h5>
+          </div>
+        </div>
+      </div>
+      <div class="table-footer">
+        <div class="footer-component" id="left-nav">
+          <button
+            class="btn-nav"
+            aria-label="go to previous page"
+            id="arw-back"
+            onclick="pagination(false)"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="footer-component" id="page-stat">
+          <p id="stat-data">
+            showing <span id="cur-page">1</span> of
+            <span id="total-page">1</span> pages
+          </p>
+        </div>
+        <div class="footer-component" id="right-nav">
+          <button
+            class="btn-nav"
+            aria-label="go to next page"
+            id="arw-forward"
+            onclick="pagination(true)"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script src="{{url_for('.static', filename='base/js/app.js')}}"></script>
+{% endblock %}

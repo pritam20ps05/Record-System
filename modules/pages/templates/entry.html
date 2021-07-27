@@ -1,0 +1,222 @@
+<!-- extending base html -->
+{% extends "base.html" %} {% block content %}
+<section class="components">
+  <section class="container">
+    <form action="" method="POST" class="user-inp" id="upd-form">
+      <div class="form-header">
+        <div id="form-title">
+          <h2>{{ params["heading"] }}</h2>
+          <div class="form-accessory">
+            <button
+              class="accessory-btn"
+              id="enb-edit"
+              type="button"
+              aria-label="make a new entry"
+              title="make a new entry"
+            >
+              <svg
+                id="upd-svg"
+                class="accessory-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                enable-background="new 0 0 24 24"
+                viewBox="0 0 24 24"
+                fill="#000000"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+              </svg>
+            </button>
+            <button
+              class="accessory-btn"
+              id="del-btn"
+              type="button"
+              aria-label="delete the entry"
+              title="delete the entry"
+            >
+              <svg
+                id="del-svg"
+                class="accessory-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                enable-background="new 0 0 24 24"
+                viewBox="0 0 24 24"
+                fill="#000000"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="section_1" class="form-component">
+        <div class="text-wraper text">
+          <label for="nsearch" id="nsrc-label">Name:</label>
+          <input class="form-data" type="text" name="nsearch" id="name-search" value="{{
+          params["value"]["name"] }}" disabled required placeholder="Enter a name" />
+        </div>
+        <div class="text-wraper text">
+          <label for="rsearch" id="rsrc-label">Registration ID:</label>
+          <input class="form-data" type="text" name="rsearch" id="reg-search" value="{{
+            params["value"]["reg_no"] }}" disabled required placeholder="Enter Registration ID" />
+        </div>
+      </div>
+      <div id="section_2" class="form-component">
+        <div class="text-wraper select">
+          <label for="class-select" id="csrc-label">Class:</label>
+          <!-- using for loop for dislaying classes -->
+          <select class="form-data" name="class-select" disabled id="class-list-entry">
+            {% for i in range(12) %}
+            <option value="{{ i+1 }}" id="class-opt2" {% if params["value"]["class"]==i+1 %} selected {% endif %}>
+              {{"Class "+(i+1)|string}}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="text-wraper select">
+          <label for="section-list" id="ssrc-label">Section:</label>
+          <select class="form-data" name="section-select" disabled id="section-list-entry">
+            {% if params["value"]["class"]<11 %}
+            <option value="A" {% if params["value"]["section"]=="A" %} selected {% endif %} id="section-opt2">Section A</option>
+            <option value="B" {% if params["value"]["section"]=="B" %} selected {% endif %} id="section-opt3">Section B</option>
+            <option value="C" {% if params["value"]["section"]=="C" %} selected {% endif %} id="section-opt4">Section C</option>
+            <option value="D" {% if params["value"]["section"]=="D" %} selected {% endif %} id="section-opt5">Section D</option>
+            {% else %}
+            <option value="SCI" {% if params["value"]["section"]=="SCI" %} selected {% endif %} id="section-opt2">Science</option>
+            <option value="COM" {% if params["value"]["section"]=="COM" %} selected {% endif %} id="section-opt3">Commerce</option>
+            <option value="HUM" {% if params["value"]["section"]=="HUM" %} selected {% endif %} id="section-opt4">Humanities</option>
+            {% endif %}
+          </select>
+        </div>
+      </div>
+      <div id="form-action">
+        <button
+          class="btn hidden"
+          aria-label="submit your input"
+          type="submit"
+          value="submit"
+        >
+          Search
+        </button>
+        <button class="btn form-data" type="submit" aria-label="update the entry" value="update" disabled>Update</button>
+      </div>
+    </form>
+  </section>
+  <section class="container">
+    <div class="table-components">
+      <div class="table-header">
+        <div class="header-component entry-table" id="usr-slno">
+          <h4>Sl. No.</h4>
+        </div>
+        <div class="header-component entry-table" id="usr-name">
+          <h4>Month</h4>
+        </div>
+        <div class="header-component entry-table" id="usr-class">
+          <h4>Pay Status</h4>
+        </div>
+        <div class="header-component entry-table" id="usr-section">
+          <h4>Date</h4>
+        </div>
+      </div>
+      <div class="table-data" id="data-table">
+        {% for month in params["months"] %}
+        <div id="" class="data-component {% if (loop.index)%2 == 0 %} low {% else %} high {% endif %}">
+          <div class="inner-data entry-table">
+            <h5>{{ loop.index }}</h5>
+          </div>
+          <div class="inner-data entry-table">
+            <h5>{{ month[0] }}</h5>
+          </div>
+          <div class="inner-data entry-table">
+            <select name="{{ "pay-" + month[0][0:3] }}" disabled form="upd-form" class="pay-list form-data">
+              <option value="0" {% if not params["value"]["PayInfo"][month[0][0:3]]["Paid"] %} selected {% endif %} id="pay-opt3">Not Paid</option>
+              <option value="1" {% if params["value"]["PayInfo"][month[0][0:3]]["Paid"] %} selected {% endif %} id="pay-opt2">Paid</option>
+            </select>
+          </div>
+          <div class="inner-data entry-table">
+            <input
+              type="date"
+              name="{{ "dinp-" + month[0][0:3] }}"
+              value="{{ params["value"]["PayInfo"][month[0][0:3]]["PayDate"] }}"
+              class="date-inp form-data"
+              disabled
+              form="upd-form"
+              min="{% if loop.index < 10 %}{{ params["year"]|string+"-0"+(loop.index)|string+"-01" }}{% else %}{{ params["year"]|string+"-"+loop.index|string+"-01" }}{% endif %}"
+              max="{% if loop.index < 10 %}{{ params["year"]|string+"-0"+(loop.index)|string+"-"+month[1] }}{% else %}{{ params["year"]|string+"-"+loop.index|string+"-"+month[1] }}{% endif %}"
+            />
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="table-footer">
+        <div class="footer-component" id="left-nav">
+          <button
+            class="btn-nav"
+            aria-label="go to previous page"
+            id="arw-back"
+            onclick="pagination(false)"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="footer-component" id="page-stat">
+          <p id="stat-data">
+            showing <span id="cur-page">1</span> of
+            <span id="total-page">1</span> pages
+          </p>
+        </div>
+        <div class="footer-component" id="right-nav">
+          <button
+            class="btn-nav"
+            aria-label="go to next page"
+            id="arw-forward"
+            onclick="pagination(true)"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+<link
+  rel="stylesheet"
+  href="{{url_for('.static', filename='entry/css/entry.css')}}"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css"
+/>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script src="{{url_for('.static', filename='base/js/app.js')}}"></script>
+<script type="text/javascript">
+  const id = "{{ params["value"]["id"] }}";
+</script>
+<script src="{{url_for('.static', filename='entry/js/entry.js')}}"></script>
+{% endblock %}

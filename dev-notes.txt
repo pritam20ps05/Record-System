@@ -1,0 +1,16 @@
+*(24/07/2021) Added a new page entry and did a successful redirection with
+              perfect id get attribute.
+
+*(25/07/2021) Added DB search for entry page and made changes to the entry
+              page table.
+
+# Add a new table design and a new data retriving and updatation method --!!
+# Add more table components to the entry page table
+# Add custom styling to the entry page
+
+(27/07/2021) ---> The project with all features was completed and is ready
+                  for its beta testing its the version 4.0.1 and it will be
+                  soon uploded to the github.
+
+
+-----Pritam Das (head Developer and Designer of this project)

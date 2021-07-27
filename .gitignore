@@ -1,0 +1,5 @@
+proj-env
+.vscode
+credentials.json
+__pycache__
+project-treeStruct.txt
