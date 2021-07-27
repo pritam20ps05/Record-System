@@ -27,8 +27,8 @@ A credentials.json file should be made in the root directory which should contai
 ```json
 {
   "db": {
-    "uri": <mongodb URI>,
-    "password": <dbuser password><optional>
+    "uri": "<mongodb URI>",
+    "password": "<dbuser password><optional>"
   }
 }
 ```
