@@ -16,7 +16,7 @@ with open(getcwd()+"/credentials.json") as creds:
 server_instance = Flask(__name__)
 db_client = MongoClient(credentials["db"]["uri"])
 db = db_client.UserData
-collection = db.PayData
+collection = db[credentials["db"]["col"]]
 
 # this import is here just to avoid circular import errors
 from modules.api.api_routes import api_routes
