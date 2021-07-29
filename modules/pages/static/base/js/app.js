@@ -57,6 +57,7 @@ function formFetch(form) {
     success: (e) => {
       // dataPopulator(e, 0, 20);
       resp_data = e;
+      cp = 0;
       renderData(true);
     },
     error: (e) => {
