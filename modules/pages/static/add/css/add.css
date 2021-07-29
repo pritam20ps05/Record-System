@@ -17,11 +17,16 @@
   /* fix date input sizing */
   input[type="date"] {
     height: 15px;
+    width: 18vw;
   }
 }
 
 @media only screen and (max-width: 400px) {
   .table-components {
     font-size: 3.8vw;
+  }
+  
+  input[type="date"] {
+    width: 17vw;
   }
 }

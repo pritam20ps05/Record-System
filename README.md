@@ -1,4 +1,5 @@
-# Record-System-Features
+
+# Record-System-Beta
 
 This is a web app built on flask and pymongo built to be served as a system to manage the student payment system efficiently. This project was built keeping in mind its UI responsiveness and interactiveness also lighthouse scores were also maintained. There are further plans of it even developing more to a fully automated system more secure, flexible and reliable.
 
