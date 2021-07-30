@@ -140,7 +140,8 @@ $("document").ready(() => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, cancel it!'
+      confirmButtonText: 'Yes, cancel it!',
+      cancelButtonText: 'NO'
     }).then((result) => {
       if (result.isConfirmed) {
         $(".inp-data").val("");
