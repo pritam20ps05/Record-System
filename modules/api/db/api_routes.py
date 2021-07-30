@@ -40,7 +40,7 @@ def update():
 @cross_origin()
 def delete():
     reqd = request.get_json()
-    print(reqd)
+    # print(reqd)
 
     collection.delete_one({"_id": ObjectId(reqd["id"])})
     resp = {
