@@ -42,8 +42,10 @@ python3 app.py
 ```
 or it can be first imported then executed in a different program
 
+NOTE: remember to rename the Record-System folder to Record_System as - has a special meaning in Python
+
 ```python
-from Record-System.app import server_instance
+from Record_System.app import server_instance
 
 server_instance.run(host="0.0.0.0", port=8000)
 ```
