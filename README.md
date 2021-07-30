@@ -1,7 +1,7 @@
 
 # Record-System-Beta
 
-This is the Beta branch of the Record-System all the new features and optimizations are first implemented and practiced here before implementing it to the main branch. Whenever a beta-release branch merges with the master branch a new version of the app is released. All the implementations in this branch are subjected to tests and changes.
+This is the Beta branch of the Record-System. All the new features and optimizations are first implemented and practiced here before implementing it to the main branch. Whenever a beta-release branch merges with the master branch a new version of the app is released. All the implementations in this branch are subjected to tests and changes so try it with a pinch of salt.
 
 ## Dependencies
 ![](https://img.shields.io/badge/flask-v2.0.1-blue)
