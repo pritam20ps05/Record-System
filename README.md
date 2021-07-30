@@ -1,7 +1,7 @@
 
 # Record-System-Beta
 
-This is a web app built on flask and pymongo built to be served as a system to manage the student payment system efficiently. This project was built keeping in mind its UI responsiveness and interactiveness also lighthouse scores were also maintained. There are further plans of it even developing more to a fully automated system more secure, flexible and reliable.
+This is the Beta branch of the Record-System all the new features and optimizations are first implemented and practiced here before implementing it to the main branch. Whenever a beta-release branch merges with the master branch a new version of the app is released. All the implementations in this branch are subjected to tests and changes.
 
 ## Dependencies
 ![](https://img.shields.io/badge/flask-v2.0.1-blue)
