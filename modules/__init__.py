@@ -19,8 +19,8 @@ db = db_client.UserData
 collection = db[credentials["db"]["col"]]
 
 # this import is here just to avoid circular import errors
-from modules.api.api_routes import api_routes
+from modules.api.db.api_routes import api_routes as dbroutes
 from modules.pages.page_routes import page_routes
 
 server_instance.register_blueprint(page_routes, url_prefix = "/")
-server_instance.register_blueprint(api_routes, url_prefix = "/api")
+server_instance.register_blueprint(dbroutes, url_prefix = "/api")

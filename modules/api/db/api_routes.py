@@ -1,6 +1,6 @@
 # this is the api routing section
 from modules import Blueprint, collection, cross_origin, request, dumps, ObjectId
-from modules.api.search import Search
+from modules.api.db.search import Search
 
 search_api = Search()
 api_routes = Blueprint("api_routes", __name__)
